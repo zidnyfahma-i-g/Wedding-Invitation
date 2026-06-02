@@ -69,7 +69,7 @@ export const weddingInfo = {
     akad: {
       title: "Akad Nikah",
       dateStr: "Senin, 22 Juni 2026",
-      timeStr: "12:00 WIB - Selesai",
+      timeStr: "10:00 WIB - Selesai",
       locationName: "Kediaman Mempelai Wanita",
       address: "Kp. Kondang RT 002/RW 019, Desa Leuwigoong, Kecamatan Leuwigoong, Garut, Jawa Barat",
       mapLink: "https://maps.app.goo.gl/nFRzaFrg7mLnb6nL9"
@@ -77,7 +77,7 @@ export const weddingInfo = {
     resepsi: {
       title: "Resepsi Nikah",
       dateStr: "Senin, 22 Juni 2026",
-      timeStr: "12:00 WIB - Selesai",
+      timeStr: "10:00 WIB - Selesai",
       locationName: "Kediaman Mempelai Wanita",
       address: "Kp. Kondang RT 002/RW 019, Desa Leuwigoong, Kecamatan Leuwigoong, Garut, Jawa Barat",
       mapLink: "https://maps.app.goo.gl/nFRzaFrg7mLnb6nL9"
@@ -134,32 +134,31 @@ export const weddingInfo = {
 
   turutMengundang: [
     "Keluarga Besar Bapak Ili (Alm)",
-    "Keluarga Besar Bapak Aman",
     "Keluarga Besar Bapak Rohman (Alm)",
     "Keluarga Besar Bapak Saadi (Alm)"
   ],
 
   defaultWishes: [
-    {
-      id: "1",
-      name: "Ustadz Hilman Fawzi",
-      status: "Hadir",
-      message: "Barakallahu lakum wa baraka alaikum. Semoga pernikahan Kang Zidny dan Teh Afni dilimpahi berkah sakinah mawaddah warahmah, menjadi wasilah ketakwaan kepada Allah SWT. Aamiin.",
-      createdAt: "2026-06-01T08:00:00Z"
-    },
-    {
-      id: "2",
-      name: "Soleh & Keluarga",
-      status: "Hadir",
-      message: "Selamat menempuh hidup baru Akhi Zidny dan Afni! Semoga senantiasa bersama dalam suka dan duka, mengarungi samudera pernikahan mendulang rida Allah.",
-      createdAt: "2026-06-01T10:30:00Z"
-    },
-    {
-      id: "3",
-      name: "Rina Kartika",
-      status: "Hadir",
-      message: "Teh Afni cantik sekali pasti pas akad! Bahagia selalu bersama suaminya yaa Teh, maaf belum bisa hadir langsung tapi doa terbaik selalu mengiringi dari jauh.",
-      createdAt: "2026-06-02T02:15:00Z"
-    }
+    // {
+    //   id: "1",
+    //   name: "Ustadz Hilman Fawzi",
+    //   status: "Hadir",
+    //   message: "Barakallahu lakum wa baraka alaikum. Semoga pernikahan Kang Zidny dan Teh Afni dilimpahi berkah sakinah mawaddah warahmah, menjadi wasilah ketakwaan kepada Allah SWT. Aamiin.",
+    //   createdAt: "2026-06-01T08:00:00Z"
+    // },
+    // {
+    //   id: "2",
+    //   name: "Soleh & Keluarga",
+    //   status: "Hadir",
+    //   message: "Selamat menempuh hidup baru Akhi Zidny dan Afni! Semoga senantiasa bersama dalam suka dan duka, mengarungi samudera pernikahan mendulang rida Allah.",
+    //   createdAt: "2026-06-01T10:30:00Z"
+    // },
+    // {
+    //   id: "3",
+    //   name: "Rina Kartika",
+    //   status: "Hadir",
+    //   message: "Teh Afni cantik sekali pasti pas akad! Bahagia selalu bersama suaminya yaa Teh, maaf belum bisa hadir langsung tapi doa terbaik selalu mengiringi dari jauh.",
+    //   createdAt: "2026-06-02T02:15:00Z"
+    // }
   ] as SystemWish[]
 };
