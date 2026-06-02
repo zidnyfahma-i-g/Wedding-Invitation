@@ -45,7 +45,7 @@ export const weddingInfo = {
     fatherName: "Bpk. Itang",
     motherName: "Ibu Euis",
     gender: "female" as const,
-    photoUrl: "/images/pengantin-wanita.jpg" // Local image for better performance
+    photoUrl: "public/images/pengantin-wanita.jpg" // Local image for better performance
   },
   
   groom: {
@@ -56,7 +56,7 @@ export const weddingInfo = {
     isDeceasedFather: true,
     isDeceasedMother: true,
     gender: "male" as const,
-    photoUrl: "/images/pengantin-pria.jpg" // Local image for better performance
+    photoUrl: "public/images/pengantin-pria.jpg" // Local image for better performance
   },
 
   ayat: {
@@ -128,7 +128,8 @@ export const weddingInfo = {
         accountHolder: "Sri Nur'Afni"
       }
     ],
-    qrisUrl: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=081914106395"
+    qrisUrl: "/images/qr-dana.jpg" // Local QR code image for better performance
+    // qrisUrl: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=081914106395"
   },
 
   turutMengundang: [
