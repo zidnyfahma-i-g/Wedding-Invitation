@@ -45,7 +45,7 @@ export const weddingInfo = {
     fatherName: "Bpk. Itang",
     motherName: "Ibu Euis",
     gender: "female" as const,
-    photoUrl: "/images/pengantin-wanita.jpg" // Local image for better performance
+    photoUrl: "" // Local image for better performance
   },
   
   groom: {
@@ -56,7 +56,7 @@ export const weddingInfo = {
     isDeceasedFather: true,
     isDeceasedMother: true,
     gender: "male" as const,
-    photoUrl: "/images/pengantin-pria.jpg" // Local image for better performance
+    photoUrl: "" // Local image for better performance
   },
 
   ayat: {
