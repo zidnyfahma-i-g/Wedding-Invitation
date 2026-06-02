@@ -178,13 +178,13 @@ export function GroomBride() {
 
               {/* Instagram link option */}
               <a
-                href="https://instagram.com/srinurafni"
+                href="https://instagram.com/sri_nurafni27"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] md:text-xs text-gold-500 bg-white px-3 py-1 rounded-full border border-gold-200/50 hover:bg-gold-100 transition duration-300 font-heading mt-2 font-medium"
               >
                 <Instagram className="w-3.5 h-3.5 stroke-[1.5]" />
-                @srinurafni
+                @sri_nurafni27
               </a>
             </div>
           </motion.div>
@@ -327,13 +327,13 @@ export function GroomBride() {
 
               {/* Instagram link option */}
               <a
-                href="https://instagram.com/zidnyfahma"
+                href="https://instagram.com/zidny_saadi"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] md:text-xs text-gold-500 bg-white px-3 py-1 rounded-full border border-gold-200/50 hover:bg-gold-100 transition duration-300 font-heading mt-2 font-medium"
               >
                 <Instagram className="w-3.5 h-3.5 stroke-[1.5]" />
-                @zidnyfahma
+                @zidny_saadi
               </a>
             </div>
           </motion.div>

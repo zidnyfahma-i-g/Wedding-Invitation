@@ -137,7 +137,7 @@ export function Hero() {
           className="flex flex-col items-center text-slate-300 pt-8"
         >
           <span className="text-[10px] tracking-widest uppercase text-slate-400 font-heading mb-1.5 font-light">
-            Sila Gulir Ke Bawah
+            Silakan Gulir Ke Bawah
           </span>
           <ChevronDown className="w-5 h-5 text-gold-400" />
         </motion.div>

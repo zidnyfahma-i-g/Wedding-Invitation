@@ -37,7 +37,7 @@ export interface SystemWish {
 export const weddingInfo = {
   brideName: "Afni",
   groomName: "Zidny",
-  weddingDate: "2026-06-22T12:00:00+07:00", // ISO wedding date for countdown
+  weddingDate: "2026-06-22T10:00:00+07:00", // ISO wedding date for countdown
   
   bride: {
     name: "Afni",
@@ -45,7 +45,7 @@ export const weddingInfo = {
     fatherName: "Bpk. Itang",
     motherName: "Ibu Euis",
     gender: "female" as const,
-    photoUrl: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=400&h=400"
+    photoUrl: "/images/pengantin-wanita.jpg" // Local image for better performance
   },
   
   groom: {
@@ -56,7 +56,7 @@ export const weddingInfo = {
     isDeceasedFather: true,
     isDeceasedMother: true,
     gender: "male" as const,
-    photoUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=400&h=400"
+    photoUrl: "/images/pengantin-pria.jpg" // Local image for better performance
   },
 
   ayat: {
@@ -124,7 +124,7 @@ export const weddingInfo = {
       },
       {
         bankName: "Bank Rakyat Indonesia (BRI)",
-        accountNumber: "3420458821",
+        accountNumber: "002501130482506",
         accountHolder: "Sri Nur'Afni"
       }
     ],
