@@ -128,7 +128,7 @@ export const weddingInfo = {
         accountHolder: "Sri Nur'Afni"
       }
     ],
-    qrisUrl: "/public/images/qr-gift.jpg" // Local QR code image for better performance
+    qrisUrl: "/images/qr-gift.jpg" // Local QR code image for better performance
     // qrisUrl: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=081914106395"
   },
 

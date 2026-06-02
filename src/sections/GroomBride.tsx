@@ -3,8 +3,12 @@ import { motion } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { weddingInfo } from "../data/weddingData";
 
+type GraphicStyle = "modern-sage" | "classic-white" | "royal-navy";
+
 export function GroomBride() {
   const { bride, groom } = weddingInfo;
+  const [graphicStyle, setGraphicStyle] = useState<GraphicStyle>("modern-sage");
+
   const cleanImageUrl = (url: string | undefined) => {
     if (!url) return "";
     if (url.startsWith("/public/")) {
@@ -12,6 +16,7 @@ export function GroomBride() {
     }
     return url;
   };
+
   const isCustomBridePhoto = bride.photoUrl && 
     !bride.photoUrl.includes("photo-1544005313") && 
     bride.photoUrl.trim() !== "";
@@ -19,7 +24,6 @@ export function GroomBride() {
   const isCustomGroomPhoto = groom.photoUrl && 
     !groom.photoUrl.includes("photo-1507003211169") && 
     groom.photoUrl.trim() !== "";
-
   return (
     <AnimatedSection
       id="mempelai"
