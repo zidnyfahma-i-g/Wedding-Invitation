@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Great+Vibes&family=Inter:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-script: "Great Vibes", cursive;
+  --font-heading: "Montserrat", sans-serif;
+  
+  --color-sage-50: #f4f6f4;
+  --color-sage-100: #e9ece8;
+  --color-sage-200: #d5ddd3;
+  --color-sage-300: #b9c6b8;
+  --color-sage-400: #9bad9a;
+  --color-sage-500: #627a65;
+  --color-sage-600: #4e6250;
+  --color-sage-700: #3d4d3e;
+  
+  --color-gold-50: #faf7f2;
+  --color-gold-100: #f3e9d4;
+  --color-gold-200: #e6cea3;
+  --color-gold-300: #d8b273;
+  --color-gold-400: #cb9648;
+  --color-gold-500: #b8860b;
+  
+  --color-beige-50: #fbf9f6;
+  --color-beige-100: #faf6f0;
+  --color-beige-200: #f4ece1;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
