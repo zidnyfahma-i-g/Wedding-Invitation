@@ -135,7 +135,8 @@ export const weddingInfo = {
   turutMengundang: [
     "Keluarga Besar Bapak Ili (Alm)",
     "Keluarga Besar Bapak Rohman (Alm)",
-    "Keluarga Besar Bapak Saadi (Alm)"
+    "Keluarga Besar Trah Saadi (Alm)",
+    "Keluarga Besar Trah Hj Siti Aminah (Almh)"
   ],
 
   defaultWishes: [
