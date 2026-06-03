@@ -10,6 +10,7 @@ import { GiftSection } from "./sections/GiftSection";
 import { WishSection } from "./sections/WishSection";
 import { Closing } from "./sections/Closing";
 import { AudioPlayer } from "./components/AudioPlayer";
+import {NavigationDock} from "./components/NavigationDock";
 import { HeartRain } from "./components/HeartRain";
 
 export default function App() {
@@ -41,6 +42,9 @@ export default function App() {
       {/* 2. Floating Romantic Instrumental Background Music System */}
       <AudioPlayer isOpened={isOpened} isPlaying={isPlaying} setIsPlaying={setIsPlaying} />
 
+      {/* 2.1 Beautiful Floating Quick Navigation Bar */}
+      <NavigationDock isOpened={isOpened} />
+      
       {/* 3. Drop Rose/Gold Falling Petals micro-experience once opened */}
       <HeartRain active={isOpened} />
 

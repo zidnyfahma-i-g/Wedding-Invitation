@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.8 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-sm md:text-base text-slate-500 font-serif italic max-w-md"
+          className="text-xs md:text-base text-slate-500 font-serif italic max-w-md"
         >
           Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan, dengan penuh kedamaian kami mengundang Anda dalam akad & resepsi kami.
         </motion.p>
