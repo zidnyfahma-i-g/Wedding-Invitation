@@ -136,7 +136,8 @@ export const weddingInfo = {
     "Keluarga Besar Bapak Ili (Alm)",
     "Keluarga Besar Bapak Rohman (Alm)",
     "Keluarga Besar Trah Saadi (Alm)",
-    "Keluarga Besar Trah Hj Siti Aminah (Almh)"
+    "Keluarga Besar Trah Hj Sri Harti (Almh)",
+    "Keluarga Besar Asep Kurniawan (Garut)"
   ],
 
   defaultWishes: [

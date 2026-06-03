@@ -84,7 +84,7 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.8 }}
           transition={{ duration: 1, delay: 0.8 }}
-          className="text-xs md:text-sm text-slate-500 font-serif italic max-w-md"
+          className="text-sm md:text-base text-slate-500 font-serif italic max-w-md"
         >
           Maha Suci Allah yang telah menciptakan makhluk-Nya berpasang-pasangan, dengan penuh kedamaian kami mengundang Anda dalam akad & resepsi kami.
         </motion.p>
@@ -122,10 +122,10 @@ export function Hero() {
           transition={{ duration: 1.2, delay: 1.2 }}
           className="text-center font-serif text-slate-600 space-y-1"
         >
-          <p className="text-sm tracking-widest uppercase font-heading font-medium text-gold-400">
+          <p className="text-1xl md:text-3xls tracking-widest uppercase font-heading font-bold text-gold-400">
             Senin, 22 Juni 2026
           </p>
-          <p className="text-xs italic text-slate-400">
+          <p className="text-sm italic text-slate-400">
             Kecamatan Leuwigoong, Garut
           </p>
         </motion.div>

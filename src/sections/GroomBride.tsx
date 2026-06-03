@@ -129,9 +129,15 @@ export function GroomBride() {
                     <circle cx="30" cy="85" r="0.4" fill="#ffffff" opacity="0.55" />
                     <circle cx="70" cy="84" r="0.5" fill="#ffffff" opacity="0.65" />
                     
-                    {/* Face base - beautiful warm tone */}
+                    {/* Elegantly styled Sage Hijab solid portion drawn first as head base */}
+                    <path d="M 36.5,34.5 C 33.5,37 32,47 35,54 C 38,61 43,65 50,66 C 57,65 62,61 65,54 C 68,47 66.5,37 63.5,34.5 C 59.5,31.5 40.5,31.5 36.5,34.5 Z" fill="#b0c4b5" />
+
+                    {/* Face base - beautiful warm tone drawn on top of the hijab base */}
                     <path d="M 37,42 C 37,30 63,30 63,42 C 63,53 50,58 50,58 C 50,58 37,53 37,42 Z" fill="#faece3" />
                     
+                    {/* Inner hijab cap frame (Ciput) framing forehead */}
+                    <path d="M 40,32.5 C 44,30.5 56,30.5 60,32.5 C 57,30 43,30 40,32.5 Z" fill="#faece3" />
+
                     {/* Rosy Cheeks (WaterColor Airbrush style) */}
                     <circle cx="43" cy="46" r="7" fill="url(#rosyCheekBride)" />
                     <circle cx="57" cy="46" r="7" fill="url(#rosyCheekBride)" />
@@ -140,13 +146,9 @@ export function GroomBride() {
                     <path d="M 42,43 C 44,44.5 46,44.5 48,43" fill="none" stroke="#a08575" strokeWidth="0.75" strokeLinecap="round" />
                     <path d="M 52,43 C 54,44.5 56,44.5 58,43" fill="none" stroke="#a08575" strokeWidth="0.75" strokeLinecap="round" />
                     
-                    {/* Elegantly styled Sage Hijab draped meticulously around face */}
+                    {/* Elegantly styled Sage Hijab outer stroke framing face opening */}
                     <path d="M 37,34 C 33,36 33,48 35,53 C 37,58 41,64 50,65 C 59,64 63,58 65,53 C 67,48 67,36 63,34 C 59,31 41,31 37,34 Z" fill="none" stroke="#7e9686" strokeWidth="2.5" strokeLinecap="round" />
-                    <path d="M 36.5,34.5 C 33.5,37 32,47 35,54 C 38,61 43,65 50,66 C 57,65 62,61 65,54 C 68,47 66.5,37 63.5,34.5 C 59.5,31.5 40.5,31.5 36.5,34.5 Z" fill="#b0c4b5" />
                     
-                    {/* Inner hijab cap frame (Ciput) */}
-                    <path d="M 40,32.5 C 44,30.5 56,30.5 60,32.5 C 57,30 43,30 40,32.5 Z" fill="#faece3" />
-
                     {/* Flowy Hijab creases / Folds */}
                     <path d="M 35,46 C 37,50 44,59 50,59 C 56,59 63,50 65,46" fill="none" stroke="#90a797" strokeWidth="0.8" />
                     <path d="M 39,52 C 43,56 47,59 50,62 C 53,59 57,56 61,52" fill="none" stroke="#90a797" strokeWidth="0.6" />
@@ -198,19 +200,19 @@ export function GroomBride() {
                 {bride.fatherName} & {bride.motherName}
               </p>
               
-              <p className="text-xs text-slate-400 italic font-serif">
-                Kp. Kondang, Garut
+              <p className="text-sm text-slate-400 italic font-serif">
+                Keluarga Besar Bpk Itang 
               </p>
 
               {/* Instagram link option */}
               <a
-                href="https://instagram.com/srinurafni"
+                href="https://instagram.com/sri_nurafni27"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] md:text-xs text-gold-500 bg-white px-3 py-1 rounded-full border border-gold-200/50 hover:bg-gold-100 transition duration-300 font-heading mt-2 font-medium"
               >
                 <Instagram className="w-3.5 h-3.5 stroke-[1.5]" />
-                @srinurafni
+                @sri_nurafni27
               </a>
             </div>
           </motion.div>
@@ -357,19 +359,19 @@ export function GroomBride() {
                 {groom.motherName} <span className="text-xs text-slate-400 font-normal italic">(Almh)</span>
               </p>
               
-              <p className="text-xs text-slate-400 italic font-serif">
+              <p className="text-sm text-slate-400 italic font-serif">
                 Keluarga Besar Bpk. Slamet Saadi
               </p>
 
               {/* Instagram link option */}
               <a
-                href="https://instagram.com/zidnyfahma"
+                href="https://instagram.com/zidny_saadi"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-1.5 text-[10px] md:text-xs text-gold-500 bg-white px-3 py-1 rounded-full border border-gold-200/50 hover:bg-gold-100 transition duration-300 font-heading mt-2 font-medium"
               >
                 <Instagram className="w-3.5 h-3.5 stroke-[1.5]" />
-                @zidnyfahma
+                @zidny_saadi
               </a>
             </div>
           </motion.div>
