@@ -143,8 +143,8 @@ export function GroomBride() {
                     <circle cx="57" cy="46" r="7" fill="url(#rosyCheekBride)" />
                     
                     {/* Soft closed eyes and smile (minimal/peaceful) */}
-                    <path d="M 42,43 C 44,44.5 46,44.5 48,43" fill="none" stroke="#a08575" strokeWidth="0.75" strokeLinecap="round" />
-                    <path d="M 52,43 C 54,44.5 56,44.5 58,43" fill="none" stroke="#a08575" strokeWidth="0.75" strokeLinecap="round" />
+                    <path d="M 42,43 C 44,44.5 46,44.5 48,43" fill="none" stroke="#241e1b" strokeWidth="0.75" strokeLinecap="round" />
+                    <path d="M 52,43 C 54,44.5 56,44.5 58,43" fill="none" stroke="#241e1b" strokeWidth="0.75" strokeLinecap="round" />
                     
                     {/* Elegantly styled Sage Hijab outer stroke framing face opening */}
                     <path d="M 37,34 C 33,36 33,48 35,53 C 37,58 41,64 50,65 C 59,64 63,58 65,53 C 67,48 67,36 63,34 C 59,31 41,31 37,34 Z" fill="none" stroke="#7e9686" strokeWidth="2.5" strokeLinecap="round" />
@@ -201,7 +201,7 @@ export function GroomBride() {
               </p>
               
               <p className="text-sm text-slate-400 italic font-serif">
-                Keluarga Besar Bpk Itang 
+                Keluarga Besar Bpk. Itang 
               </p>
 
               {/* Instagram link option */}
