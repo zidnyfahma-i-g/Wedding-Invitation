@@ -13,35 +13,57 @@ export function WishSection() {
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertSuccess, setAlertSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [isFallbackMode, setIsFallbackMode] = useState(false);
 
-  // Load from Firebase Firestore in real-time
+  // Load from LocalStorage/Defaults first for instantaneous loading, then sync with Firebase
   useEffect(() => {
+    // 1. Load local cache to display immediately
+    const localData = localStorage.getItem("wedding_wishes_afni_zidny");
+    if (localData) {
+      try {
+        setWishes(JSON.parse(localData));
+      } catch (e) {
+        setWishes(weddingInfo.defaultWishes);
+      }
+    } else {
+      setWishes(weddingInfo.defaultWishes);
+    }
+
+    // 2. Setup real-time Firestore listener
     const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
 
     const unsubscribe = onSnapshot(
       q,
       (snapshot) => {
+        setIsFallbackMode(false);
         const loadedWishes: SystemWish[] = [];
         snapshot.forEach((docSnap) => {
           loadedWishes.push(docSnap.data() as SystemWish);
         });
 
-        // Seed default wishes if Firestore is completely empty
         if (loadedWishes.length === 0) {
+          // If Firestore collection is completely empty, seed with defaults
           const defaultWishes = weddingInfo.defaultWishes;
+          setWishes(defaultWishes);
+          localStorage.setItem("wedding_wishes_afni_zidny", JSON.stringify(defaultWishes));
+
           defaultWishes.forEach(async (wish) => {
             try {
               await setDoc(doc(db, "wishes", wish.id), wish);
             } catch (err) {
-              console.error("Error seeding default wish:", err);
+              console.warn("Could not seed default wish to cloud database:", err);
             }
           });
         } else {
           setWishes(loadedWishes);
+          localStorage.setItem("wedding_wishes_afni_zidny", JSON.stringify(loadedWishes));
         }
       },
       (error) => {
-        handleFirestoreError(error, OperationType.LIST, "wishes");
+        console.warn("Firestore collection sync failed, falling back to local storage:", error);
+        setIsFallbackMode(true);
+        // Do not crash the UI/app; just log and run in local-only / fallback mode gracefully
       }
     );
 
@@ -53,6 +75,7 @@ export function WishSection() {
     if (!name.trim() || !message.trim()) return;
 
     setIsSubmitting(true);
+    setSubmitError(null);
 
     const newWish: SystemWish = {
       id: Date.now().toString(),
@@ -62,7 +85,13 @@ export function WishSection() {
       createdAt: new Date().toISOString(),
     };
 
+    // 1. Optimistically append the wish locally so response is instantaneous
+    const updatedLocalWishes = [newWish, ...wishes];
+    setWishes(updatedLocalWishes);
+    localStorage.setItem("wedding_wishes_afni_zidny", JSON.stringify(updatedLocalWishes));
+
     try {
+      // 2. Save document to cloud Firestore
       await setDoc(doc(db, "wishes", newWish.id), newWish);
 
       // Reset form states
@@ -75,8 +104,16 @@ export function WishSection() {
       setAlertSuccess(true);
       setTimeout(() => setAlertSuccess(false), 3000);
     } catch (error) {
+      console.error("Firestore write failed:", error);
       setIsSubmitting(false);
-      handleFirestoreError(error, OperationType.CREATE, `wishes/${newWish.id}`);
+      
+      // Keep wishes optimistic update but inform the user of cloud syncing failure
+      const errorMsg = error instanceof Error ? error.message : String(error);
+      if (errorMsg.includes("permission-denied") || errorMsg.includes("Missing or insufficient permissions")) {
+        setSubmitError("Pesan tersimpan lokal. Gagal menyinkronkan ke Cloud (Izin Ditolak/Aturan Keamanan).");
+      } else {
+        setSubmitError("Pesan tersimpan lokal. Gagal menyinkronkan ke Cloud (Terputus/Offline).");
+      }
     }
   };
 
@@ -212,7 +249,15 @@ export function WishSection() {
                 )}
               </button>
             </form>
-  
+
+            {/* Error Message notice inside container */}
+            {submitError && (
+              <div className="mt-4 p-3 bg-rose-50 border border-rose-100 rounded-xl text-[11px] text-rose-600 text-left font-sans leading-relaxed">
+                <span className="font-semibold block mb-0.5">ℹ️ Catatan Sinkronisasi:</span>
+                {submitError}
+              </div>
+            )}
+
             {/* Success Alert toast inside card */}
             <AnimatePresence>
               {alertSuccess && (
@@ -223,7 +268,7 @@ export function WishSection() {
                   className="absolute bottom-6 left-6 right-6 bg-emerald-500 text-white text-xs py-2 px-4 rounded-xl shadow-lg flex items-center justify-center gap-1.5 z-20"
                 >
                   <Sparkles className="w-4 h-4 animate-bounce" />
-                  <span>Alhamdulillah! Doa Anda berhasil terkirim ke Buku Tamu!</span>
+                  <span>Doa Anda berhasil disimpan!</span>
                 </motion.div>
               )}
             </AnimatePresence>
@@ -233,8 +278,20 @@ export function WishSection() {
           <div className="lg:col-span-7 w-full flex flex-col">
             
             {/* Stats display */}
-            <div className="mb-4 text-xs font-heading font-semibold text-slate-400 tracking-wider uppercase text-left">
-              Total Ucapan: {wishes.length} Pesan
+            <div className="mb-4 flex items-center justify-between flex-wrap gap-2">
+              <div className="text-xs font-heading font-semibold text-slate-400 tracking-wider uppercase text-left">
+                Total Ucapan: {wishes.length} Pesan
+              </div>
+              {isFallbackMode ? (
+                <span className="text-[10px] bg-amber-50 text-amber-700 border border-amber-200/50 px-2 py-0.5 rounded-full font-heading font-semibold tracking-wider uppercase animate-pulse">
+                  ⚠️ Mode Lokal
+                </span>
+              ) : (
+                <span className="text-[10px] bg-emerald-50 text-emerald-700 border border-emerald-200/40 px-2 py-0.5 rounded-full font-heading font-semibold tracking-wider uppercase flex items-center gap-1">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping" />
+                  Cloud Terhubung
+                </span>
+              )}
             </div>
 
             {/* Scrolling Feed layout */}
