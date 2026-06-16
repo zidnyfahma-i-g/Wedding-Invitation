@@ -1,0 +1,40 @@
+{
+  "entities": {
+    "Wish": {
+      "title": "Wish",
+      "description": "Wedding guestbook wish / message",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier of the wish"
+        },
+        "name": {
+          "type": "string",
+          "description": "Full name of the guest"
+        },
+        "status": {
+          "type": "string",
+          "description": "Attendance status (Hadir, Tidak Hadir, Tentatif)",
+          "enum": ["Hadir", "Tidak Hadir", "Tentatif"]
+        },
+        "message": {
+          "type": "string",
+          "description": "Wish and blessing message"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when the wish was sent"
+        }
+      },
+      "required": ["id", "name", "status", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/wishes/{wishId}": {
+      "schema": "Wish",
+      "description": "Collection of wedding wishes"
+    }
+  }
+}

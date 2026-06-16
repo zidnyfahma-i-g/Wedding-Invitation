@@ -3,6 +3,7 @@ import { MessageSquare, CalendarCheck2, UserRound, Sparkles, Send } from "lucide
 import { motion, AnimatePresence } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { weddingInfo, SystemWish } from "../data/weddingData";
+import { db, handleFirestoreError, OperationType } from "../lib/firebase";
 
 export function WishSection() {
   const [wishes, setWishes] = useState<SystemWish[]>([]);
@@ -12,22 +13,70 @@ export function WishSection() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [alertSuccess, setAlertSuccess] = useState(false);
 
-  // Load from LocalStorage + prefill defaults on mount
+  // Load from Firebase Firestore in real-time
   useEffect(() => {
-    const localData = localStorage.getItem("wedding_wishes_afni_zidny");
-    if (localData) {
-      try {
-        setWishes(JSON.parse(localData));
-      } catch (e) {
-        setWishes(weddingInfo.defaultWishes);
+    const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const loadedWishes: SystemWish[] = [];
+        snapshot.forEach((docSnap) => {
+          loadedWishes.push(docSnap.data() as SystemWish);
+        });
+
+        // Seed default wishes if Firestore is completely empty
+        if (loadedWishes.length === 0) {
+          const defaultWishes = weddingInfo.defaultWishes;
+          defaultWishes.forEach(async (wish) => {
+            try {
+              await setDoc(doc(db, "wishes", wish.id), wish);
+            } catch (err) {
+              console.error("Error seeding default wish:", err);
+            }
+          });
+        } else {
+          setWishes(loadedWishes);
+        }
+      },
+      (error) => {
+        handleFirestoreError(error, OperationType.LIST, "wishes");
       }
-    } else {
-      setWishes(weddingInfo.defaultWishes);
-      localStorage.setItem(
-        "wedding_wishes_afni_zidny",
-        JSON.stringify(weddingInfo.defaultWishes)
-      );
-    }
+    );
+
+    return () => unsubscribe();
+  }, []);// Load from Firebase Firestore in real-time
+  useEffect(() => {
+    const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
+
+    const unsubscribe = onSnapshot(
+      q,
+      (snapshot) => {
+        const loadedWishes: SystemWish[] = [];
+        snapshot.forEach((docSnap) => {
+          loadedWishes.push(docSnap.data() as SystemWish);
+        });
+
+        // Seed default wishes if Firestore is completely empty
+        if (loadedWishes.length === 0) {
+          const defaultWishes = weddingInfo.defaultWishes;
+          defaultWishes.forEach(async (wish) => {
+            try {
+              await setDoc(doc(db, "wishes", wish.id), wish);
+            } catch (err) {
+              console.error("Error seeding default wish:", err);
+            }
+          });
+        } else {
+          setWishes(loadedWishes);
+        }
+      },
+      (error) => {
+        handleFirestoreError(error, OperationType.LIST, "wishes");
+      }
+    );
+
+    return () => unsubscribe();
   }, []);
 
   const handleSubmit = (e: FormEvent) => {
@@ -44,12 +93,9 @@ export function WishSection() {
       createdAt: new Date().toISOString(),
     };
 
-    // Simulate small latency for premium UI feeling
-    setTimeout(() => {
-      const updatedWishes = [newWish, ...wishes];
-      setWishes(updatedWishes);
-      localStorage.setItem("wedding_wishes_afni_zidny", JSON.stringify(updatedWishes));
-      
+    try {
+      await setDoc(doc(db, "wishes", newWish.id), newWish);
+
       // Reset form states
       setName("");
       setMessage("");
@@ -59,7 +105,10 @@ export function WishSection() {
       // Show temporary beautiful success alert
       setAlertSuccess(true);
       setTimeout(() => setAlertSuccess(false), 3000);
-    }, 600);
+    } catch (error) {
+      setIsSubmitting(false);
+      handleFirestoreError(error, OperationType.CREATE, `wishes/${newWish.id}`);
+    }
   };
 
   const getInitials = (fullName: string) => {
