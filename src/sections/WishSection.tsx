@@ -3,6 +3,7 @@ import { MessageSquare, CalendarCheck2, UserRound, Sparkles, Send } from "lucide
 import { motion, AnimatePresence } from "motion/react";
 import { AnimatedSection } from "../components/AnimatedSection";
 import { weddingInfo, SystemWish } from "../data/weddingData";
+import { collection, query, orderBy, onSnapshot, doc, setDoc } from "firebase/firestore";
 import { db, handleFirestoreError, OperationType } from "../lib/firebase";
 
 export function WishSection() {
@@ -45,41 +46,9 @@ export function WishSection() {
     );
 
     return () => unsubscribe();
-  }, []);// Load from Firebase Firestore in real-time
-  useEffect(() => {
-    const q = query(collection(db, "wishes"), orderBy("createdAt", "desc"));
-
-    const unsubscribe = onSnapshot(
-      q,
-      (snapshot) => {
-        const loadedWishes: SystemWish[] = [];
-        snapshot.forEach((docSnap) => {
-          loadedWishes.push(docSnap.data() as SystemWish);
-        });
-
-        // Seed default wishes if Firestore is completely empty
-        if (loadedWishes.length === 0) {
-          const defaultWishes = weddingInfo.defaultWishes;
-          defaultWishes.forEach(async (wish) => {
-            try {
-              await setDoc(doc(db, "wishes", wish.id), wish);
-            } catch (err) {
-              console.error("Error seeding default wish:", err);
-            }
-          });
-        } else {
-          setWishes(loadedWishes);
-        }
-      },
-      (error) => {
-        handleFirestoreError(error, OperationType.LIST, "wishes");
-      }
-    );
-
-    return () => unsubscribe();
   }, []);
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     if (!name.trim() || !message.trim()) return;
 
