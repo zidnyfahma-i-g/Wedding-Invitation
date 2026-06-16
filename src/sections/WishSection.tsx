@@ -212,7 +212,7 @@ export function WishSection() {
                 )}
               </button>
             </form>
-
+  
             {/* Success Alert toast inside card */}
             <AnimatePresence>
               {alertSuccess && (
@@ -223,7 +223,7 @@ export function WishSection() {
                   className="absolute bottom-6 left-6 right-6 bg-emerald-500 text-white text-xs py-2 px-4 rounded-xl shadow-lg flex items-center justify-center gap-1.5 z-20"
                 >
                   <Sparkles className="w-4 h-4 animate-bounce" />
-                  <span>Doa Anda berhasil terkirim ke Buku Tamu!</span>
+                  <span>Alhamdulillah! Doa Anda berhasil terkirim ke Buku Tamu!</span>
                 </motion.div>
               )}
             </AnimatePresence>
